@@ -13,6 +13,8 @@
 		22CF6B7E265E30F2009138A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22CF6B7C265E30F2009138A1 /* Main.storyboard */; };
 		22CF6B80265E30F3009138A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22CF6B7F265E30F3009138A1 /* Assets.xcassets */; };
 		22CF6B83265E30F3009138A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22CF6B81265E30F3009138A1 /* LaunchScreen.storyboard */; };
+		22CF6B8C265E43BD009138A1 /* RecipeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF6B8A265E43BD009138A1 /* RecipeListTableViewCell.swift */; };
+		22CF6B8D265E43BD009138A1 /* RecipeListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22CF6B8B265E43BD009138A1 /* RecipeListTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		22CF6B7F265E30F3009138A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22CF6B82265E30F3009138A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22CF6B84265E30F3009138A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22CF6B8A265E43BD009138A1 /* RecipeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListTableViewCell.swift; sourceTree = "<group>"; };
+		22CF6B8B265E43BD009138A1 /* RecipeListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeListTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				22CF6B7F265E30F3009138A1 /* Assets.xcassets */,
 				22CF6B81265E30F3009138A1 /* LaunchScreen.storyboard */,
 				22CF6B84265E30F3009138A1 /* Info.plist */,
+				22CF6B8A265E43BD009138A1 /* RecipeListTableViewCell.swift */,
+				22CF6B8B265E43BD009138A1 /* RecipeListTableViewCell.xib */,
 			);
 			path = MyRecipe;
 			sourceTree = "<group>";
@@ -127,6 +133,7 @@
 				22CF6B83265E30F3009138A1 /* LaunchScreen.storyboard in Resources */,
 				22CF6B80265E30F3009138A1 /* Assets.xcassets in Resources */,
 				22CF6B7E265E30F2009138A1 /* Main.storyboard in Resources */,
+				22CF6B8D265E43BD009138A1 /* RecipeListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +147,7 @@
 				22CF6B7B265E30F2009138A1 /* ViewController.swift in Sources */,
 				22CF6B77265E30F2009138A1 /* AppDelegate.swift in Sources */,
 				22CF6B79265E30F2009138A1 /* SceneDelegate.swift in Sources */,
+				22CF6B8C265E43BD009138A1 /* RecipeListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
