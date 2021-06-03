@@ -17,6 +17,9 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nUK-f0-wBz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="150" id="DiH-Ev-bQP"/>
+                        </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blackbox" translatesAutoresizingMaskIntoConstraints="NO" id="0a5-qh-rZj">
                         <rect key="frame" x="0.0" y="120" width="414" height="30"/>

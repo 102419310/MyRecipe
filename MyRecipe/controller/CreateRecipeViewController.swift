@@ -15,15 +15,41 @@ class CreateRecipeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var steps: UITextView!
     @IBOutlet weak var difficulty: UISlider!
     @IBOutlet weak var indicator: UILabel!
+    @IBOutlet weak var warning: UILabel!
     
     @IBAction func sliderChanged(_ sender: Any) {
         let sliderValue = Int(round(difficulty.value))
         indicator.text = "Difficulty: " + String(sliderValue)
     }
     //check the data and go back to home page
+    //validation tut:https://www.youtube.com/watch?v=GczyH6sPBbI
     @IBAction func confirm(_ sender: Any) {
+        //character within 0~25
+        guard let name = recipename.text, (recipename.text?.count) != 0, (recipename.text!.count) <= 25
+        else {
+            warning.text = "Please enter your recipe name correctly."
+            return
+        }
+        //cannot be empty
+        guard let cookt = cooktime.text, (cooktime.text?.count) != 0
+        else {
+            warning.text = "Please enter your cook time."
+            return
+        }
+        //cannot be empty
+        guard let ingred = ingredients.text, (ingredients.text?.count) != 0
+        else {
+            warning.text = "Please enter your ingredients."
+            return
+        }
+        //cannot be empty
+        guard let step = steps.text, (steps.text?.count) != 0
+        else {
+            warning.text = "Please enter your steps."
+            return
+        }
         let db = DBHelper()
-        db.insert(name: recipename.text!, cooktime: cooktime.text!, ingredients: ingredients.text!, steps: steps.text!, difficulty: Int(round(difficulty.value)))
+        db.insert(name: name, cooktime: cookt, ingredients: ingred, steps: step, difficulty: Int(round(difficulty.value)))
         _ = navigationController?.popViewController(animated: true)
     }
     //planning to make these into table view so users can select whether to add more columns
@@ -31,6 +57,7 @@ class CreateRecipeViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         steps.layer.borderWidth = 0.3
         ingredients.layer.borderWidth = 0.3
+        warning.text = ""
     }
     
 //remove the keyboard when other place is touched

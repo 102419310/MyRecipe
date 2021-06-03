@@ -280,7 +280,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="b3O-Ik-JtY" userLabel="Row Stack View">
                                         <rect key="frame" x="0.0" y="110" width="374" height="35"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Difficulty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gac-9q-jVK">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Difficulty: 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gac-9q-jVK">
                                                 <rect key="frame" x="0.0" y="0.0" width="179.5" height="35"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -342,13 +342,12 @@
                                     <constraint firstItem="64Z-fH-rsY" firstAttribute="width" secondItem="pUw-eo-Uz5" secondAttribute="width" id="x2e-rk-12W"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VBA-PV-QhS">
-                                <rect key="frame" x="179.5" y="473" width="55" height="30"/>
-                                <state key="normal" title="Confirm"/>
-                                <connections>
-                                    <action selector="confirm:" destination="iHF-2U-h6N" eventType="touchUpInside" id="W2D-TG-r0f"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="warning" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fX-1p-2ia">
+                                <rect key="frame" x="177" y="103" width="60.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4Sq-bB-Q9e"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -356,11 +355,23 @@
                             <constraint firstItem="7Ug-Wq-fIP" firstAttribute="leading" secondItem="4Sq-bB-Q9e" secondAttribute="leading" constant="20" id="0hf-HZ-hF2"/>
                             <constraint firstItem="4Sq-bB-Q9e" firstAttribute="trailing" secondItem="7Ug-Wq-fIP" secondAttribute="trailing" constant="20" id="DAb-mV-paR"/>
                             <constraint firstItem="7Ug-Wq-fIP" firstAttribute="top" secondItem="4Sq-bB-Q9e" secondAttribute="top" constant="50" id="PMU-xU-C3S"/>
-                            <constraint firstItem="VBA-PV-QhS" firstAttribute="top" secondItem="7Ug-Wq-fIP" secondAttribute="bottom" constant="34" id="vXI-ut-SBL"/>
-                            <constraint firstItem="VBA-PV-QhS" firstAttribute="centerX" secondItem="OZW-mo-TiB" secondAttribute="centerX" id="zbV-JI-RBN"/>
+                            <constraint firstItem="5fX-1p-2ia" firstAttribute="top" secondItem="4Sq-bB-Q9e" secondAttribute="top" constant="15" id="UaT-K8-XYL"/>
+                            <constraint firstItem="5fX-1p-2ia" firstAttribute="centerX" secondItem="OZW-mo-TiB" secondAttribute="centerX" id="ka8-yr-xi0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Recipe" id="ow4-4S-CuH"/>
+                    <navigationItem key="navigationItem" title="Create Recipe" id="ow4-4S-CuH">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="hGm-T1-D89">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="VBA-PV-QhS">
+                                <rect key="frame" x="208" y="447" width="68" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Confirm"/>
+                                <connections>
+                                    <action selector="confirm:" destination="iHF-2U-h6N" eventType="touchUpInside" id="W2D-TG-r0f"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cooktime" destination="Yqe-bT-iF7" id="xqf-wr-D7P"/>
                         <outlet property="difficulty" destination="17T-DS-It1" id="9Jr-Ws-Cmr"/>
@@ -368,6 +379,7 @@
                         <outlet property="ingredients" destination="Dkd-0a-fIW" id="qby-kw-iI7"/>
                         <outlet property="recipename" destination="34z-HD-JkV" id="qEw-xB-UtT"/>
                         <outlet property="steps" destination="5bL-dK-WTs" id="xei-Pl-hhc"/>
+                        <outlet property="warning" destination="5fX-1p-2ia" id="pek-Bp-0Lw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZLD-Kf-Vq1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -385,6 +397,9 @@
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
