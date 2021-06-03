@@ -7,23 +7,35 @@
 
 import UIKit
 import UserNotifications
+import SQLite
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
 
+    let db = DBHelper()
+    var list = [Recipe]()
     @IBOutlet weak var table: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //rigister nib for use
         table.register(RecipeListTableViewCell.nib(), forCellReuseIdentifier: RecipeListTableViewCell.identifier)
-        table.rowHeight = UITableView.automaticDimension
-        // Do any additional setup after loading the view.
-        //show badge
-        //UIApplication.shared.applicationIconBadgeNumber = 0
-
+       // db.insert(name: "test")
+        list = db.read()
+    }
+    
+    //create recipe on button click
+    @IBAction func createRecipe(_ sender: Any) {
+        performSegue(withIdentifier: "createRecipe", sender: self)
+    }
+    //reload the table when new recipe is created
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        list = db.read()
+        table.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 25
+        return list.count
     }
     
     /*Deprecated
@@ -38,7 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //1. Create notification center object
         let center = UNUserNotificationCenter.current()
         //2. Ask for permission
-        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             //do something if denied
         }
         //3. Create notification content, with title and body
@@ -46,8 +58,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
        // content.setValue("YES", forKeyPath: "shouldAlwaysAlertWhileAppIsForeground")
         content.title = "Hey there"
         content.body = "Check out for popular recipe!⬆️"
-        content.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber;
         content.sound = UNNotificationSound.default
+        UIApplication.shared.applicationIconBadgeNumber += 1
         //4. Create a notification trigger
         let date = Date().addingTimeInterval(1)
         let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
@@ -61,6 +73,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                   // Handle any errors.
                }
         }
+        performSegue(withIdentifier: "showRecipe", sender: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->CGFloat{
@@ -69,7 +82,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipeListTableViewCell.identifier, for: indexPath) as! RecipeListTableViewCell
-        cell.configure(title: "Unadon", image: "dish", time: "15~20"+" mins")
+        cell.configure(title: list[indexPath.row].name, image: "dish", time: list[indexPath.row].cooktime + " mins")
         return cell
     }
 }
