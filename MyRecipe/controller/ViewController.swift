@@ -10,10 +10,15 @@ import UserNotifications
 import SQLite
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
-//connect to db
+    //connect to db
     let db = DBHelper()
+    //list for db load
     var list = [Recipe]()
-    
+    //recipe object for preparation
+    var recipe = Recipe()
+    //deletion confirmation
+    var rdelete = false
+
     @IBOutlet weak var table: UITableView!
     
     override func viewDidLoad() {
@@ -55,14 +60,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //swipe to delete ttps://www.youtube.com/watch?v=F6dgdJCFS1Q
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            tableView.beginUpdates()
-            db.delete(name: list[indexPath.row].name)
-            list.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            tableView.endUpdates()
+            //confirm deletion https://stackoverflow.com/questions/25511945/swift-alert-view-with-ok-and-cancel-which-button-tapped
+            let refreshAlert = UIAlertController(title: "Delete recipe", message: "This recipe will be permanently removed.", preferredStyle: UIAlertController.Style.alert)
+
+            refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] (action: UIAlertAction!) in
+                db.delete(name: list[indexPath.row].name)
+                list.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.endUpdates()
+            }))
+            refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            }))
+            present(refreshAlert, animated: true, completion: nil)
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        recipe = list[indexPath.row]
         //1. Create notification center object
         let center = UNUserNotificationCenter.current()
         //2. Ask for permission
@@ -100,6 +113,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipeListTableViewCell.identifier, for: indexPath) as! RecipeListTableViewCell
         cell.configure(title: list[indexPath.row].name, image: "dish", time: list[indexPath.row].cooktime + " mins")
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showRecipe"
+        {
+        let viewController = segue.destination as! ViewRecipeViewController
+            viewController.recipe = recipe
+        }
     }
 }
 
