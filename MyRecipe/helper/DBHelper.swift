@@ -86,5 +86,18 @@ class DBHelper{
         }
         return list
     }
+    //delete recipe by name
+    func delete(name: String){
+        let query = "DELETE FROM recipe1 WHERE name = '\(name)'"
+        var statement: OpaquePointer? = nil
+        if sqlite3_prepare(db, query, -1, &statement, nil) == SQLITE_OK{
+            if sqlite3_step(statement) == SQLITE_DONE{
+                print("Successfully delete data")
+            }
+            else{
+                print("Error deleting data")
+            }
+        }
+    }
     
 }
