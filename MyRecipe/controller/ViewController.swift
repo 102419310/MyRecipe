@@ -10,9 +10,10 @@ import UserNotifications
 import SQLite
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
-
+//connect to db
     let db = DBHelper()
     var list = [Recipe]()
+    
     @IBOutlet weak var table: UITableView!
     
     override func viewDidLoad() {
@@ -46,6 +47,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         completionHandler(UNNotificationPresentationOptions.banner)
     }
     */
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    //swipe to delete ttps://www.youtube.com/watch?v=F6dgdJCFS1Q
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            tableView.beginUpdates()
+            list.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.endUpdates()
+        }
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         //1. Create notification center object
         let center = UNUserNotificationCenter.current()
