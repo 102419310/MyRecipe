@@ -9,30 +9,60 @@ import UIKit
 import UserNotifications
 import SQLite
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UISearchBarDelegate {
     //connect to db
     let db = DBHelper()
     //list for db load
     var list = [Recipe]()
     //recipe object for preparation
     var recipe = Recipe()
-    //deletion confirmation
-    var rdelete = false
-
+    var filteredlist = [Recipe]()
+    var searching = false
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         //rigister nib for use
         table.register(RecipeListTableViewCell.nib(), forCellReuseIdentifier: RecipeListTableViewCell.identifier)
        // db.insert(name: "test")
         list = db.read()
+       // filteredlist = list
     }
     
     //create recipe on button click
     @IBAction func createRecipe(_ sender: Any) {
         performSegue(withIdentifier: "createRecipe", sender: self)
     }
+    
+    //https://github.com/codepath/ios_guides/wiki/Search-Bar-Guide
+    //Search bar
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+       // searching = true
+        //closure filters contain logic with case insensitive
+        filteredlist = searchText.isEmpty ? list : list.filter { (item: Recipe) -> Bool in
+            return item.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+                }
+        table.reloadData()
+    }
+    
+    //show searchbar when focused
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searching = true
+        //Disable editing while searching
+        self.table.setEditing(false, animated: true)
+        self.searchBar.showsCancelButton = true
+    }
+    //clear searchbar when out of focus
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        table.reloadData()
+    }
+    
     //reload the table when new recipe is created
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -40,18 +70,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         table.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+    //disable editing during searching
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if searching{
+            return false
+        }else{
+            return true
+        }
     }
-    
-    /*Deprecated
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // Update the app interface directly.
-        completionHandler(UNNotificationPresentationOptions.banner)
-    }
-    */
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
@@ -74,6 +100,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             present(refreshAlert, animated: true, completion: nil)
         }
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         recipe = list[indexPath.row]
         //1. Create notification center object
@@ -111,8 +138,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipeListTableViewCell.identifier, for: indexPath) as! RecipeListTableViewCell
-        cell.configure(title: list[indexPath.row].name, image: "dish", time: list[indexPath.row].cooktime + " mins")
+        if searching{
+            cell.configure(title: filteredlist[indexPath.row].name, image: "dish", time: filteredlist[indexPath.row].cooktime + " mins")
+        }else{
+            cell.configure(title: list[indexPath.row].name, image: "dish", time:list[indexPath.row].cooktime + " mins")}
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searching{
+            return filteredlist.count
+        }else{
+            return list.count
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -21,6 +21,8 @@ class CreateRecipeViewController: UIViewController, UITextFieldDelegate, UIImage
     @IBOutlet weak var selectView: UIImageView!
     var imagePicker = UIImagePickerController()
     
+    //https://stackoverflow.com/questions/25510081/how-to-allow-user-to-pick-the-image-with-swift
+    //choose the image from album
     @IBAction func choose(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
                     imagePicker.delegate = self
@@ -29,6 +31,7 @@ class CreateRecipeViewController: UIViewController, UITextFieldDelegate, UIImage
                     present(imagePicker, animated: true, completion: nil)
                 }
     }
+    
     @IBAction func sliderChanged(_ sender: Any) {
         let sliderValue = Int(round(difficulty.value))
         indicator.text = "Difficulty: " + String(sliderValue)

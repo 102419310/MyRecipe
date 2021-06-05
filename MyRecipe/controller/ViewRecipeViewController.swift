@@ -15,6 +15,7 @@ class ViewRecipeViewController: UIViewController {
     @IBOutlet weak var ingredients: UILabel!
     @IBOutlet weak var steps: UILabel!
     
+    //share the recipe to twitter
     @IBAction func share(_ sender: Any) {
         //content of the tweet
         let tweetText = "Recipe: \(recipe.name), Ingredients: \(recipe.ingredients), Steps: \(recipe.steps)"
@@ -39,6 +40,7 @@ class ViewRecipeViewController: UIViewController {
         self.present(alert, animated: true, completion:nil)
  
     }
+    
     var recipe = Recipe()
 
     override func viewDidLoad() {
@@ -50,16 +52,4 @@ class ViewRecipeViewController: UIViewController {
         steps.text = recipe.steps
         // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

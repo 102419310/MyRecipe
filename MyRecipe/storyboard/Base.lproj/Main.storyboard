@@ -97,6 +97,10 @@
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="DXr-a9-KHw">
                                 <rect key="frame" x="0.0" y="88" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
                             </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pNd-gQ-obv"/>
@@ -131,6 +135,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="DXr-a9-KHw" id="TSE-GZ-xT8"/>
                         <outlet property="table" destination="aoL-0C-tWI" id="293-Zw-B7l"/>
                         <segue destination="WGk-gz-8Bb" kind="show" identifier="showRecipe" id="USU-Di-T4I"/>
                         <segue destination="iHF-2U-h6N" kind="show" identifier="createRecipe" id="GKD-er-4Dl"/>
@@ -140,7 +145,7 @@
             </objects>
             <point key="canvasLocation" x="-1226.0869565217392" y="1395.5357142857142"/>
         </scene>
-        <!--What to cook?-->
+        <!--Cooking time!-->
         <scene sceneID="Nor-jF-ZUQ">
             <objects>
                 <viewController id="JRj-Ph-JK9" sceneMemberID="viewController">
@@ -149,29 +154,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pb7-oz-FTV">
-                                <rect key="frame" x="0.0" y="139" width="414" height="674"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ho9-EA-VKK">
-                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xb7-hS-lma"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Pb7-oz-FTV" firstAttribute="top" secondItem="ho9-EA-VKK" secondAttribute="bottom" id="5Qc-M5-ERF"/>
-                            <constraint firstItem="ho9-EA-VKK" firstAttribute="leading" secondItem="xb7-hS-lma" secondAttribute="leading" id="BeH-o6-5er"/>
-                            <constraint firstItem="Pb7-oz-FTV" firstAttribute="top" secondItem="ho9-EA-VKK" secondAttribute="bottom" id="SgS-Bu-zME"/>
-                            <constraint firstItem="Pb7-oz-FTV" firstAttribute="top" secondItem="ho9-EA-VKK" secondAttribute="bottom" id="cy2-rO-QLQ"/>
-                            <constraint firstItem="ho9-EA-VKK" firstAttribute="top" secondItem="xb7-hS-lma" secondAttribute="top" id="hRS-wu-8cX"/>
                             <constraint firstItem="Pb7-oz-FTV" firstAttribute="bottom" secondItem="xb7-hS-lma" secondAttribute="bottom" id="hVX-6u-cUw"/>
-                            <constraint firstItem="ho9-EA-VKK" firstAttribute="trailing" secondItem="xb7-hS-lma" secondAttribute="trailing" id="kgw-FX-IPW"/>
+                            <constraint firstItem="Pb7-oz-FTV" firstAttribute="top" secondItem="xb7-hS-lma" secondAttribute="top" id="kzj-Bk-Scw"/>
                             <constraint firstItem="Pb7-oz-FTV" firstAttribute="leading" secondItem="xb7-hS-lma" secondAttribute="leading" id="mLd-JK-hQN"/>
                             <constraint firstItem="Pb7-oz-FTV" firstAttribute="trailing" secondItem="xb7-hS-lma" secondAttribute="trailing" id="msT-4f-6II"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="What to cook?" id="9zX-hh-c4a"/>
+                    <navigationItem key="navigationItem" title="Cooking time!" id="9zX-hh-c4a"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAa-Ln-jzh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
