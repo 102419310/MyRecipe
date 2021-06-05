@@ -15,6 +15,30 @@ class ViewRecipeViewController: UIViewController {
     @IBOutlet weak var ingredients: UILabel!
     @IBOutlet weak var steps: UILabel!
     
+    //save the tried recipe
+    @IBAction func finish(_ sender: Any) {
+        let alert = UIAlertController(title: "Rate this recipe", message: "How you went through this recipe", preferredStyle: UIAlertController.Style.alert )
+            let save = UIAlertAction(title: "Save", style: .default) { (alertAction) in
+            let rating = alert.textFields![0] as UITextField
+            let comment = alert.textFields![1] as UITextField
+            let formatter = DateFormatter()
+                formatter.timeStyle = .medium
+            let time = formatter.string(from: Date())
+            let db = DBHelper()
+                db.insertHistory(name: self.recipe.name, date: time, comment: comment.text!, rating: Int(rating.text!)!)
+            }
+                alert.addTextField { (textField) in
+                textField.placeholder = "Enter your rating of the recipe (0-5) "
+                }
+                alert.addTextField { (textField) in
+                textField.placeholder = "Enter your short comments"
+                }
+            let cancel = UIAlertAction(title: "Cancel", style: .default) { (alertAction) in }
+                alert.addAction(save)
+                alert.addAction(cancel)
+                self.present(alert, animated:true, completion: nil)
+            }
+
     //share the recipe to twitter
     @IBAction func share(_ sender: Any) {
         //content of the tweet

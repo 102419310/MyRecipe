@@ -7,9 +7,9 @@
 
 import Foundation
 
-class Experience{
+class History{
     var name: String = ""
-    var date: Date = Date()
-    var comments: String = ""
+    var date: String = ""
+    var comment: String = ""
     var rating: Int = 0
 }

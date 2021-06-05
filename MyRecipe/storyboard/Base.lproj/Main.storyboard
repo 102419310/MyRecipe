@@ -152,20 +152,8 @@
                     <view key="view" contentMode="scaleToFill" id="1HS-lt-xTX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pb7-oz-FTV">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="xb7-hS-lma"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Pb7-oz-FTV" firstAttribute="bottom" secondItem="xb7-hS-lma" secondAttribute="bottom" id="hVX-6u-cUw"/>
-                            <constraint firstItem="Pb7-oz-FTV" firstAttribute="top" secondItem="xb7-hS-lma" secondAttribute="top" id="kzj-Bk-Scw"/>
-                            <constraint firstItem="Pb7-oz-FTV" firstAttribute="leading" secondItem="xb7-hS-lma" secondAttribute="leading" id="mLd-JK-hQN"/>
-                            <constraint firstItem="Pb7-oz-FTV" firstAttribute="trailing" secondItem="xb7-hS-lma" secondAttribute="trailing" id="msT-4f-6II"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Cooking time!" id="9zX-hh-c4a"/>
                 </viewController>
@@ -173,30 +161,55 @@
             </objects>
             <point key="canvasLocation" x="-426" y="1396"/>
         </scene>
-        <!--View Controller-->
+        <!--Cooking history-->
         <scene sceneID="LQ3-tu-hM1">
             <objects>
-                <viewController id="i8w-Ho-PnQ" sceneMemberID="viewController">
+                <viewController id="i8w-Ho-PnQ" customClass="HistoryViewController" customModule="MyRecipe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kwx-gd-86Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1Ez-1x-aPS">
-                                <rect key="frame" x="141.5" y="88" width="131" height="32"/>
+                                <rect key="frame" x="148.5" y="88" width="117" height="32"/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="Date"/>
+                                    <segment title="Rating"/>
                                 </segments>
                             </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rku-lf-3jI">
+                                <rect key="frame" x="0.0" y="119" width="414" height="694"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="History" id="zXB-5w-zWd">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zXB-5w-zWd" id="VeJ-vP-weL">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="i8w-Ho-PnQ" id="hIc-Xs-KHu"/>
+                                    <outlet property="delegate" destination="i8w-Ho-PnQ" id="q5B-0t-xjW"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="O8j-ec-gqc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="1Ez-1x-aPS" firstAttribute="top" secondItem="O8j-ec-gqc" secondAttribute="top" id="09N-vA-z9C"/>
+                            <constraint firstItem="O8j-ec-gqc" firstAttribute="trailing" secondItem="Rku-lf-3jI" secondAttribute="trailing" id="3yq-42-BxL"/>
+                            <constraint firstItem="Rku-lf-3jI" firstAttribute="leading" secondItem="O8j-ec-gqc" secondAttribute="leading" id="8K9-Ci-Wc4"/>
                             <constraint firstItem="1Ez-1x-aPS" firstAttribute="centerX" secondItem="kwx-gd-86Z" secondAttribute="centerX" id="D9t-Vb-Ijv"/>
+                            <constraint firstItem="Rku-lf-3jI" firstAttribute="top" secondItem="1Ez-1x-aPS" secondAttribute="bottom" id="j1Z-lq-Rfa"/>
+                            <constraint firstItem="O8j-ec-gqc" firstAttribute="bottom" secondItem="Rku-lf-3jI" secondAttribute="bottom" id="pee-yg-aiL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="eMt-8E-oZg"/>
+                    <navigationItem key="navigationItem" title="Cooking history" id="eMt-8E-oZg"/>
+                    <connections>
+                        <outlet property="table" destination="Rku-lf-3jI" id="HN3-8c-pHT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bjO-hr-trF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -307,11 +320,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="View Recipe" id="0gY-oI-NUE">
-                        <barButtonItem key="rightBarButtonItem" title="Share" image="square.and.arrow.up" catalog="system" id="6xh-uQ-HUg">
-                            <connections>
-                                <action selector="share:" destination="WGk-gz-8Bb" id="dwS-Tk-NUP"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="done" image="checkmark.square" catalog="system" id="FxN-fz-yfF">
+                                <connections>
+                                    <action selector="finish:" destination="WGk-gz-8Bb" id="gZH-VL-rhF"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Share" image="square.and.arrow.up" catalog="system" id="6xh-uQ-HUg">
+                                <connections>
+                                    <action selector="share:" destination="WGk-gz-8Bb" id="dwS-Tk-NUP"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="difficulty" destination="Mr7-8E-IiQ" id="PCB-aV-sY3"/>
@@ -510,6 +530,7 @@
     <resources>
         <image name="archivebox" catalog="system" width="128" height="106"/>
         <image name="blackbox" width="178" height="104"/>
+        <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="dish" width="1546" height="908"/>
         <image name="flame" catalog="system" width="108" height="128"/>
         <image name="list.bullet.rectangle" catalog="system" width="128" height="93"/>

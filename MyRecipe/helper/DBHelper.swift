@@ -14,6 +14,7 @@ class DBHelper{
     init(){
         self.db = createDB()
         self.createTable()
+        self.createTableHistory()
     }
     //create db for use, check if it is created successfully
     func createDB() -> OpaquePointer? {
@@ -27,6 +28,23 @@ class DBHelper{
         }else{
             print("Database created with path \(path)")
             return db
+        }
+    }
+    
+    func createTableHistory(){
+        let query = "CREATE TABLE IF NOT EXISTS recipeHistory(name TEXT NOT NULL, date TEXT NOT NULL, comment TEXT NOT NULL, rating INT NOT NULL);"
+        var createTable : OpaquePointer? = nil
+        
+        if sqlite3_prepare(self.db, query, -1, &createTable, nil) == SQLITE_OK{
+            if sqlite3_step(createTable) == SQLITE_DONE{
+                print("Table created successfully")
+            }else{
+                //if sql is excuted correctly
+                print("Failed to create table")
+            }
+        }else{
+            //fail to prepare
+            print("Preparation fail")
         }
     }
     
@@ -46,6 +64,24 @@ class DBHelper{
             print("Preparation fail")
         }
     }
+    
+    //insert history after clicking finish button
+    func insertHistory(name: String, date: String, comment: String, rating: Int){
+        let query = "INSERT INTO recipeHistory(name, date, comment, rating) VALUES ('\(name)', '\(date)', '\(comment)', '\(rating)');"
+        var statement : OpaquePointer? = nil
+        if (sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK){
+            sqlite3_bind_text(statement, 1, (name as NSString).utf8String, -1, nil)
+            if sqlite3_step(statement) == SQLITE_DONE{
+                print("Insertion complete")
+            }else{
+                print("Insertion fail")
+            }
+            
+        }else{
+            print("Query failed")
+        }
+    }
+    
     
     func insert(name: String, cooktime: String, ingredients: String, steps: String, difficulty: Int){
         let query = "INSERT INTO recipe1 (name, cooktime, ingredients, steps, difficulty) VALUES ('\(name)', '\(cooktime)', '\(ingredients)', '\(steps)', '\(difficulty)');"
@@ -86,6 +122,29 @@ class DBHelper{
         }
         return list
     }
+    
+    func readHistory() -> [History]{
+        var list = [History]()
+        let query = "SELECT * FROM recipeHistory"
+        var statement: OpaquePointer? = nil
+        if sqlite3_prepare(db, query, -1, &statement, nil) == SQLITE_OK{
+            while sqlite3_step(statement) == SQLITE_ROW{
+                let name = String(describing: String(cString: sqlite3_column_text(statement, 0)))
+                //let date = Date(timeIntervalSinceReferenceDate: sqlite3_column_double(statement, 1))
+                let date = String(describing: String(cString: sqlite3_column_text(statement, 1)))
+                let comment = String(describing: String(cString: sqlite3_column_text(statement, 2)))
+                let rating = Int(sqlite3_column_int(statement, 3))
+                let history = History()
+                history.name = name
+                history.date = date
+                history.comment = comment
+                history.rating = rating
+                list.append(history)
+            }
+        }
+        return list
+    }
+    
     //delete recipe by name
     func delete(name: String){
         let query = "DELETE FROM recipe1 WHERE name = '\(name)'"
