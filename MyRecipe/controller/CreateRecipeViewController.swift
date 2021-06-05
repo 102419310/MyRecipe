@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreateRecipeViewController: UIViewController, UITextFieldDelegate {
+class CreateRecipeViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var recipename: UITextField!
     @IBOutlet weak var cooktime: UITextField!
@@ -17,6 +17,17 @@ class CreateRecipeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var indicator: UILabel!
     @IBOutlet weak var warning: UILabel!
     
+    @IBOutlet weak var selectView: UIImageView!
+    var imagePicker = UIImagePickerController()
+    
+    @IBAction func choose(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+                    imagePicker.delegate = self
+                    imagePicker.sourceType = .savedPhotosAlbum
+                    imagePicker.allowsEditing = false
+                    present(imagePicker, animated: true, completion: nil)
+                }
+    }
     @IBAction func sliderChanged(_ sender: Any) {
         let sliderValue = Int(round(difficulty.value))
         indicator.text = "Difficulty: " + String(sliderValue)
@@ -64,14 +75,11 @@ class CreateRecipeViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let selectedImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage") ] as? UIImage
+        selectView.image = selectedImage
+        dismiss(animated: true, completion: nil)
     }
-    */
 
 }

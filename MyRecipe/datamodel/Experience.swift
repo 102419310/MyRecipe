@@ -9,7 +9,7 @@ import Foundation
 
 class Experience{
     var name: String = ""
-    var date: String = ""
+    var date: Date = Date()
     var comments: String = ""
     var rating: Int = 0
 }
