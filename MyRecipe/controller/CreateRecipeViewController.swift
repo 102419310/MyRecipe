@@ -9,6 +9,7 @@ import UIKit
 
 class CreateRecipeViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var choosebutton: UIButton!
     @IBOutlet weak var recipename: UITextField!
     @IBOutlet weak var cooktime: UITextField!
     @IBOutlet weak var ingredients: UITextView!
@@ -79,6 +80,9 @@ class CreateRecipeViewController: UIViewController, UITextFieldDelegate, UIImage
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage") ] as? UIImage
         selectView.image = selectedImage
+        choosebutton.setTitle("Change Image", for: .normal)
+        choosebutton.setTitleColor(UIColor.white, for: .normal)
+        selectView.alpha = 1
         dismiss(animated: true, completion: nil)
     }
 
