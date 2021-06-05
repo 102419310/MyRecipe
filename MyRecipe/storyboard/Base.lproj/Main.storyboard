@@ -222,6 +222,9 @@
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackbox" translatesAutoresizingMaskIntoConstraints="NO" id="1Y6-7D-zhD">
                                 <rect key="frame" x="0.0" y="228" width="414" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Tv6-hp-eNa"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOl-a1-sY6" userLabel="DishName">
                                 <rect key="frame" x="8" y="233" width="406" height="21"/>
@@ -276,9 +279,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ZJF-wS-scP" firstAttribute="trailing" secondItem="NKZ-Zj-VaS" secondAttribute="trailing" id="2nm-63-5T4"/>
+                            <constraint firstItem="1Y6-7D-zhD" firstAttribute="top" secondItem="NKZ-Zj-VaS" secondAttribute="top" constant="140" id="76p-DP-Id5"/>
+                            <constraint firstItem="1Y6-7D-zhD" firstAttribute="top" secondItem="NKZ-Zj-VaS" secondAttribute="top" constant="140" id="8Cp-Yk-Db5"/>
                             <constraint firstItem="NKZ-Zj-VaS" firstAttribute="trailing" secondItem="WOl-a1-sY6" secondAttribute="trailing" id="8Zl-Sv-nDJ"/>
-                            <constraint firstItem="1Y6-7D-zhD" firstAttribute="leading" secondItem="NKZ-Zj-VaS" secondAttribute="leading" id="94R-tf-FqD"/>
-                            <constraint firstItem="1Y6-7D-zhD" firstAttribute="leading" secondItem="NKZ-Zj-VaS" secondAttribute="leading" id="9gG-CV-FoR"/>
                             <constraint firstItem="Db0-p4-dPo" firstAttribute="centerX" secondItem="dCA-F2-9Qd" secondAttribute="centerX" id="AxV-5U-eFe"/>
                             <constraint firstItem="Mr7-8E-IiQ" firstAttribute="top" secondItem="NKZ-Zj-VaS" secondAttribute="top" constant="145" id="ChQ-It-z2t"/>
                             <constraint firstItem="QAB-j3-W0p" firstAttribute="centerX" secondItem="dCA-F2-9Qd" secondAttribute="centerX" id="GEo-cK-xbx"/>
@@ -286,30 +289,33 @@
                             <constraint firstItem="ZJF-wS-scP" firstAttribute="top" secondItem="NKZ-Zj-VaS" secondAttribute="top" id="JOH-PF-m4e"/>
                             <constraint firstItem="WOl-a1-sY6" firstAttribute="top" secondItem="NKZ-Zj-VaS" secondAttribute="top" constant="145" id="KOl-vd-Iba"/>
                             <constraint firstItem="YTg-tH-4ps" firstAttribute="top" secondItem="ZJF-wS-scP" secondAttribute="bottom" constant="30" id="KSS-6C-aUe"/>
-                            <constraint firstItem="NKZ-Zj-VaS" firstAttribute="bottom" secondItem="1Y6-7D-zhD" secondAttribute="bottom" constant="555" id="MxX-nC-8lg"/>
                             <constraint firstItem="WOl-a1-sY6" firstAttribute="leading" secondItem="NKZ-Zj-VaS" secondAttribute="leading" constant="8" id="NHE-zb-d1s"/>
                             <constraint firstItem="Wwv-GT-jc3" firstAttribute="centerX" secondItem="dCA-F2-9Qd" secondAttribute="centerX" id="Oqb-8y-Mse"/>
                             <constraint firstItem="ZJF-wS-scP" firstAttribute="leading" secondItem="NKZ-Zj-VaS" secondAttribute="leading" id="Xk8-ls-PWG"/>
                             <constraint firstItem="Db0-p4-dPo" firstAttribute="top" secondItem="QAB-j3-W0p" secondAttribute="bottom" constant="15" id="YDt-Xt-sIq"/>
                             <constraint firstItem="QAB-j3-W0p" firstAttribute="top" secondItem="YTg-tH-4ps" secondAttribute="bottom" constant="50" id="ZBg-hw-boS"/>
                             <constraint firstItem="Wwv-GT-jc3" firstAttribute="top" secondItem="YFs-od-0v7" secondAttribute="bottom" constant="15" id="cJm-Jm-3bG"/>
+                            <constraint firstItem="1Y6-7D-zhD" firstAttribute="trailing" secondItem="NKZ-Zj-VaS" secondAttribute="trailing" id="hke-S9-GWl"/>
                             <constraint firstItem="YFs-od-0v7" firstAttribute="top" secondItem="Db0-p4-dPo" secondAttribute="bottom" constant="15" id="htS-vC-0Oq"/>
                             <constraint firstItem="imI-LH-0id" firstAttribute="centerX" secondItem="dCA-F2-9Qd" secondAttribute="centerX" id="jLM-g7-fzN"/>
                             <constraint firstItem="imI-LH-0id" firstAttribute="top" secondItem="YTg-tH-4ps" secondAttribute="bottom" constant="13" id="luX-cK-o0M"/>
-                            <constraint firstItem="1Y6-7D-zhD" firstAttribute="trailing" secondItem="NKZ-Zj-VaS" secondAttribute="trailing" id="ncp-Uk-PZK"/>
+                            <constraint firstItem="1Y6-7D-zhD" firstAttribute="leading" secondItem="NKZ-Zj-VaS" secondAttribute="leading" id="pHZ-ii-w9g"/>
                             <constraint firstItem="ZJF-wS-scP" firstAttribute="top" secondItem="NKZ-Zj-VaS" secondAttribute="top" id="qtu-IQ-r27"/>
                             <constraint firstItem="YTg-tH-4ps" firstAttribute="centerX" secondItem="dCA-F2-9Qd" secondAttribute="centerX" id="sF2-Yc-Hj9"/>
+                            <constraint firstItem="1Y6-7D-zhD" firstAttribute="leading" secondItem="NKZ-Zj-VaS" secondAttribute="leading" id="sai-Z3-AjX"/>
                             <constraint firstItem="NKZ-Zj-VaS" firstAttribute="trailing" secondItem="Mr7-8E-IiQ" secondAttribute="trailing" constant="10" id="ucY-wV-jpM"/>
                             <constraint firstItem="ZJF-wS-scP" firstAttribute="leading" secondItem="NKZ-Zj-VaS" secondAttribute="leading" id="vYT-nu-rDc"/>
                             <constraint firstItem="ZJF-wS-scP" firstAttribute="trailing" secondItem="NKZ-Zj-VaS" secondAttribute="trailing" id="wW2-fa-VmG"/>
                             <constraint firstItem="QAB-j3-W0p" firstAttribute="top" secondItem="imI-LH-0id" secondAttribute="bottom" constant="13" id="wXE-Hu-zmp"/>
-                            <constraint firstItem="1Y6-7D-zhD" firstAttribute="top" secondItem="NKZ-Zj-VaS" secondAttribute="top" constant="140" id="wkO-fq-jkk"/>
-                            <constraint firstItem="1Y6-7D-zhD" firstAttribute="trailing" secondItem="NKZ-Zj-VaS" secondAttribute="trailing" id="zFU-Ot-PlS"/>
-                            <constraint firstItem="1Y6-7D-zhD" firstAttribute="top" secondItem="NKZ-Zj-VaS" secondAttribute="top" constant="140" id="zfx-d5-8Wy"/>
+                            <constraint firstItem="1Y6-7D-zhD" firstAttribute="trailing" secondItem="NKZ-Zj-VaS" secondAttribute="trailing" id="zQy-vW-pdi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="View Recipe" id="0gY-oI-NUE">
-                        <barButtonItem key="rightBarButtonItem" title="Share" image="square.and.arrow.up" catalog="system" id="6xh-uQ-HUg"/>
+                        <barButtonItem key="rightBarButtonItem" title="Share" image="square.and.arrow.up" catalog="system" id="6xh-uQ-HUg">
+                            <connections>
+                                <action selector="share:" destination="WGk-gz-8Bb" id="dwS-Tk-NUP"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="difficulty" destination="Mr7-8E-IiQ" id="PCB-aV-sY3"/>
