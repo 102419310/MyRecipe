@@ -145,7 +145,7 @@
             </objects>
             <point key="canvasLocation" x="-1226.0869565217392" y="1395.5357142857142"/>
         </scene>
-        <!--Cooking time!-->
+        <!--Cooking timer-->
         <scene sceneID="Nor-jF-ZUQ">
             <objects>
                 <viewController id="JRj-Ph-JK9" customClass="CookViewController" customModule="MyRecipe" customModuleProvider="target" sceneMemberID="viewController">
@@ -154,21 +154,55 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gHJ-TB-bHK">
-                                <rect key="frame" x="47" y="340" width="320" height="216"/>
+                                <rect key="frame" x="47" y="212.5" width="320" height="216"/>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W28-Qq-WGr">
+                                <rect key="frame" x="115" y="453.5" width="43" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="start:" destination="JRj-Ph-JK9" eventType="touchUpInside" id="qKA-IG-CtS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ptc-ER-eea">
+                                <rect key="frame" x="258" y="453.5" width="41" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stop:" destination="JRj-Ph-JK9" eventType="touchUpInside" id="gFC-1Y-5Gn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xux-fQ-dhL">
+                                <rect key="frame" x="130" y="148" width="154" height="44.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xb7-hS-lma"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gHJ-TB-bHK" firstAttribute="centerX" secondItem="1HS-lt-xTX" secondAttribute="centerX" id="LGh-V8-urX"/>
-                            <constraint firstItem="gHJ-TB-bHK" firstAttribute="centerY" secondItem="1HS-lt-xTX" secondAttribute="centerY" id="mCn-sh-1oH"/>
+                            <constraint firstItem="xux-fQ-dhL" firstAttribute="centerX" secondItem="1HS-lt-xTX" secondAttribute="centerX" id="45X-tn-SMX"/>
+                            <constraint firstItem="gHJ-TB-bHK" firstAttribute="centerX" secondItem="1HS-lt-xTX" secondAttribute="centerX" id="Cf3-EH-c40"/>
+                            <constraint firstItem="gHJ-TB-bHK" firstAttribute="top" secondItem="xux-fQ-dhL" secondAttribute="bottom" constant="20" id="PXd-tx-iaw"/>
+                            <constraint firstItem="xux-fQ-dhL" firstAttribute="top" secondItem="xb7-hS-lma" secondAttribute="top" constant="60" id="W98-1l-Z3x"/>
+                            <constraint firstItem="W28-Qq-WGr" firstAttribute="top" secondItem="gHJ-TB-bHK" secondAttribute="bottom" constant="25" id="YsX-K8-aJU"/>
+                            <constraint firstItem="Ptc-ER-eea" firstAttribute="top" secondItem="gHJ-TB-bHK" secondAttribute="bottom" constant="25" id="Z6g-rw-hUA"/>
+                            <constraint firstItem="W28-Qq-WGr" firstAttribute="leading" secondItem="xb7-hS-lma" secondAttribute="leading" constant="115" id="bzI-dK-q28"/>
+                            <constraint firstItem="xb7-hS-lma" firstAttribute="trailing" secondItem="Ptc-ER-eea" secondAttribute="trailing" constant="115" id="dxS-Yq-cBS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Cooking time!" id="9zX-hh-c4a"/>
+                    <navigationItem key="navigationItem" title="Cooking timer" id="9zX-hh-c4a"/>
+                    <connections>
+                        <outlet property="startButton" destination="W28-Qq-WGr" id="WqV-7V-Vco"/>
+                        <outlet property="stopButton" destination="Ptc-ER-eea" id="yHw-Io-9DM"/>
+                        <outlet property="time" destination="xux-fQ-dhL" id="87K-Ui-5Yj"/>
+                        <outlet property="timeSelecter" destination="gHJ-TB-bHK" id="KqD-Xk-xPM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAa-Ln-jzh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-426" y="1396"/>
+            <point key="canvasLocation" x="-426.08695652173918" y="1395.5357142857142"/>
         </scene>
         <!--Cooking history-->
         <scene sceneID="LQ3-tu-hM1">
