@@ -8,6 +8,7 @@
 import UIKit
 
 class CookViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
+    //total seconds is for the display conversion
     var totalseconds = 0
     var seconds = 0
     var minutes = 0
@@ -87,10 +88,10 @@ class CookViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
             if self.totalseconds == -1 {
                 timer.invalidate()
                 time.text = "Time's Up!"
-                self.seconds = 0
                 startButton.isEnabled = true
                 stopButton.isEnabled = false
                 timeSelecter.isUserInteractionEnabled = true
+                displayNotification()
             } else {
                 //keep updating
                 var (h,m,s) = secondsToHMS(seconds: totalseconds)
@@ -110,5 +111,34 @@ class CookViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         timeSelecter.delegate = self
         //hide the stop button at the begining
         stopButton.isEnabled = false
+    }
+    
+    func displayNotification(){
+        //1. Create notification center object
+        let center = UNUserNotificationCenter.current()
+        //2. Ask for permission
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            //do something if denied
+        }
+        //3. Create notification content, with title and body
+        let content = UNMutableNotificationContent()
+       // content.setValue("YES", forKeyPath: "shouldAlwaysAlertWhileAppIsForeground")
+        content.title = "Hey there"
+        content.body = "Time is up!"
+        content.sound = UNNotificationSound.default
+        UIApplication.shared.applicationIconBadgeNumber += 1
+        //4. Create a notification trigger
+        let date = Date().addingTimeInterval(1)
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        //5. Create a request to encapsule items above as an object
+        let uuidString = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+        //6. Register the request with notificatino center
+        center.add(request){(error) in
+            if error != nil {
+                  // Handle any errors.
+               }
+        }
     }
 }
