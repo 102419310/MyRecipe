@@ -26,10 +26,11 @@ class ViewRecipeViewController: UIViewController {
                 comment.text = "No comments"
             }
             let formatter = DateFormatter()
+            formatter.dateStyle = .medium
             formatter.timeStyle = .medium
-            let time = formatter.string(from: Date())
+            let timedate = formatter.string(from: Date())
             let db = DBHelper()
-            db.insertHistory(name: self.recipe.name, date: time, comment: comment.text!, rating: Int(rating.text!)!)
+            db.insertHistory(name: self.recipe.name, date: timedate, comment: comment.text!, rating: Int(rating.text!)!)
         }
         
         //https://stackoverflow.com/questions/24037711/get-the-length-of-a-string

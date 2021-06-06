@@ -169,12 +169,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1Ez-1x-aPS">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="1Ez-1x-aPS">
                                 <rect key="frame" x="148.5" y="88" width="117" height="32"/>
                                 <segments>
-                                    <segment title="Date"/>
                                     <segment title="Rating"/>
+                                    <segment title="Date"/>
                                 </segments>
+                                <connections>
+                                    <action selector="indexChanged:" destination="i8w-Ho-PnQ" eventType="valueChanged" id="nPL-tY-zHh"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rku-lf-3jI">
                                 <rect key="frame" x="0.0" y="119" width="414" height="694"/>
@@ -208,6 +211,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Cooking history" id="eMt-8E-oZg"/>
                     <connections>
+                        <outlet property="segmentedControl" destination="1Ez-1x-aPS" id="YbU-x9-k9l"/>
                         <outlet property="table" destination="Rku-lf-3jI" id="HN3-8c-pHT"/>
                     </connections>
                 </viewController>

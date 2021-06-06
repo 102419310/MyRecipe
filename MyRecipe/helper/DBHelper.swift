@@ -32,7 +32,7 @@ class DBHelper{
     }
     
     func createTableHistory(){
-        let query = "CREATE TABLE IF NOT EXISTS recipeHistory(name TEXT NOT NULL, date TEXT NOT NULL, comment TEXT NOT NULL, rating INT NOT NULL);"
+        let query = "CREATE TABLE IF NOT EXISTS recipeHistory2(name TEXT NOT NULL, date TEXT NOT NULL, comment TEXT NOT NULL, rating INT NOT NULL);"
         var createTable : OpaquePointer? = nil
         
         if sqlite3_prepare(self.db, query, -1, &createTable, nil) == SQLITE_OK{
@@ -67,7 +67,7 @@ class DBHelper{
     
     //insert history after clicking finish button
     func insertHistory(name: String, date: String, comment: String, rating: Int){
-        let query = "INSERT INTO recipeHistory(name, date, comment, rating) VALUES ('\(name)', '\(date)', '\(comment)', '\(rating)');"
+        let query = "INSERT INTO recipeHistory2(name, date, comment, rating) VALUES ('\(name)', '\(date)', '\(comment)', '\(rating)');"
         var statement : OpaquePointer? = nil
         if (sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK){
             sqlite3_bind_text(statement, 1, (name as NSString).utf8String, -1, nil)
@@ -125,7 +125,7 @@ class DBHelper{
     
     func readHistory() -> [History]{
         var list = [History]()
-        let query = "SELECT * FROM recipeHistory"
+        let query = "SELECT * FROM recipeHistory2"
         var statement: OpaquePointer? = nil
         if sqlite3_prepare(db, query, -1, &statement, nil) == SQLITE_OK{
             while sqlite3_step(statement) == SQLITE_ROW{
