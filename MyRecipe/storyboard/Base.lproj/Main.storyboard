@@ -148,12 +148,21 @@
         <!--Cooking time!-->
         <scene sceneID="Nor-jF-ZUQ">
             <objects>
-                <viewController id="JRj-Ph-JK9" sceneMemberID="viewController">
+                <viewController id="JRj-Ph-JK9" customClass="CookViewController" customModule="MyRecipe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1HS-lt-xTX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gHJ-TB-bHK">
+                                <rect key="frame" x="47" y="340" width="320" height="216"/>
+                            </pickerView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="xb7-hS-lma"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gHJ-TB-bHK" firstAttribute="centerX" secondItem="1HS-lt-xTX" secondAttribute="centerX" id="LGh-V8-urX"/>
+                            <constraint firstItem="gHJ-TB-bHK" firstAttribute="centerY" secondItem="1HS-lt-xTX" secondAttribute="centerY" id="mCn-sh-1oH"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Cooking time!" id="9zX-hh-c4a"/>
                 </viewController>
