@@ -52,7 +52,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         //enable subtitle style
         cell.textLabel?.text = list[indexPath.row].name + " | " + list[indexPath.row].date
-        cell.detailTextLabel?.text = String(list[indexPath.row].rating) + "🌟 " + list[indexPath.row].comment
+        cell.detailTextLabel?.text = String(list[indexPath.row].rating) + "⭐️ " + list[indexPath.row].comment
         return cell
     }
     
