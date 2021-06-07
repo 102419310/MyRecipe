@@ -49,7 +49,7 @@ class DBHelper{
     }
     
     func createTable(){
-        let query = "CREATE TABLE IF NOT EXISTS recipe1(name TEXT NOT NULL, cooktime TEXT NOT NULL, ingredients TEXT NOT NULL, steps TEXT NOT NULL, difficulty INT NOT NULL, PRIMARY KEY (name));"
+        let query = "CREATE TABLE IF NOT EXISTS recipe2(name TEXT NOT NULL, cooktime TEXT NOT NULL, ingredients TEXT NOT NULL, steps TEXT NOT NULL, difficulty INT NOT NULL, PRIMARY KEY (name));"
         var createTable : OpaquePointer? = nil
         
         if sqlite3_prepare(self.db, query, -1, &createTable, nil) == SQLITE_OK{
@@ -84,7 +84,7 @@ class DBHelper{
     
     
     func insert(name: String, cooktime: String, ingredients: String, steps: String, difficulty: Int){
-        let query = "INSERT INTO recipe1 (name, cooktime, ingredients, steps, difficulty) VALUES ('\(name)', '\(cooktime)', '\(ingredients)', '\(steps)', '\(difficulty)');"
+        let query = "INSERT INTO recipe2 (name, cooktime, ingredients, steps, difficulty) VALUES ('\(name)', '\(cooktime)', '\(ingredients)', '\(steps)', '\(difficulty)');"
         var statement : OpaquePointer? = nil
         if (sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK){
             sqlite3_bind_text(statement, 1, (name as NSString).utf8String, -1, nil)
@@ -102,7 +102,7 @@ class DBHelper{
     
     func read() -> [Recipe]{
         var list = [Recipe]()
-        let query = "SELECT * FROM recipe1"
+        let query = "SELECT * FROM recipe2"
         var statement: OpaquePointer? = nil
         if sqlite3_prepare(db, query, -1, &statement, nil) == SQLITE_OK{
             while sqlite3_step(statement) == SQLITE_ROW{
@@ -147,7 +147,7 @@ class DBHelper{
     
     //delete recipe by name
     func delete(name: String){
-        let query = "DELETE FROM recipe1 WHERE name = '\(name)'"
+        let query = "DELETE FROM recipe2 WHERE name = '\(name)'"
         var statement: OpaquePointer? = nil
         if sqlite3_prepare(db, query, -1, &statement, nil) == SQLITE_OK{
             if sqlite3_step(statement) == SQLITE_DONE{

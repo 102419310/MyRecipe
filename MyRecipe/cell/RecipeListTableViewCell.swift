@@ -21,9 +21,9 @@ class RecipeListTableViewCell: UITableViewCell {
     @IBOutlet weak var time2: UILabel!
     
     
-    public func configure(title: String, image: String, time: String){
+    public func configure(title: String, image: URL, time: String){
         recipeName.text = title
-        recipeImage.image = UIImage(named: image)
+        recipeImage.image = UIImage(contentsOfFile: image.path)
         time2.text = time
     }
     
@@ -32,12 +32,10 @@ class RecipeListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         //myImageView.contentMode = .scaleAspectFill
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     

@@ -113,10 +113,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipeListTableViewCell.identifier, for: indexPath) as! RecipeListTableViewCell
+        
+        //find the document directory, userDomainmask and path of that image of the recipe
+        //https://developer.apple.com/documentation/foundation/1414224-nssearchpathfordirectoriesindoma
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        let path = paths.first
+        //image will have the name of the recipe
+        let imageURL = URL(fileURLWithPath: path!).appendingPathComponent("\(list[indexPath.row].name).jpg")
+        
         if searching{
-            cell.configure(title: filteredlist[indexPath.row].name, image: "dish", time: filteredlist[indexPath.row].cooktime + " mins")
+            cell.configure(title: filteredlist[indexPath.row].name, image: imageURL, time: filteredlist[indexPath.row].cooktime + " mins")
         }else{
-            cell.configure(title: list[indexPath.row].name, image: "dish", time:list[indexPath.row].cooktime + " mins")}
+            cell.configure(title: list[indexPath.row].name, image: imageURL, time:list[indexPath.row].cooktime + " mins")}
         return cell
     }
     

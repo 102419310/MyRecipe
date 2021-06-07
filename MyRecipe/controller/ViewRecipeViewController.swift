@@ -14,6 +14,7 @@ class ViewRecipeViewController: UIViewController {
     @IBOutlet weak var preparationtime: UILabel!
     @IBOutlet weak var ingredients: UILabel!
     @IBOutlet weak var steps: UILabel!
+    @IBOutlet weak var recipeImage: UIImageView!
     
     //save the tried recipe
     @IBAction func finish(_ sender: Any) {
@@ -94,6 +95,14 @@ class ViewRecipeViewController: UIViewController {
         preparationtime.text = recipe.cooktime + " mins"
         ingredients.text = recipe.ingredients
         steps.text = recipe.steps
+        
+        //change the image of the recipe
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        let path = paths.first
+        //image will have the name of the recipe
+        let imageURL = URL(fileURLWithPath: path!).appendingPathComponent("\(recipeName.text!).jpg")
+        recipeImage.image = UIImage(contentsOfFile: imageURL.path)
+
         // Do any additional setup after loading the view.
     }
 }

@@ -117,7 +117,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Recipe" id="SMW-Ef-Gp4">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="gQd-cE-4SR">
+                        <barButtonItem key="rightBarButtonItem" id="gQd-cE-4SR">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0BP-mg-zKf">
                                 <rect key="frame" x="358" y="11" width="36" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -379,6 +379,7 @@
                         <outlet property="difficulty" destination="Mr7-8E-IiQ" id="PCB-aV-sY3"/>
                         <outlet property="ingredients" destination="Db0-p4-dPo" id="Rbv-86-vJd"/>
                         <outlet property="preparationtime" destination="imI-LH-0id" id="c2z-db-NUT"/>
+                        <outlet property="recipeImage" destination="ZJF-wS-scP" id="UcJ-ZX-LE0"/>
                         <outlet property="recipeName" destination="WOl-a1-sY6" id="HZU-VV-ASg"/>
                         <outlet property="steps" destination="Wwv-GT-jc3" id="JMp-kZ-j6f"/>
                     </connections>
@@ -540,7 +541,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create Recipe" id="ow4-4S-CuH">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="hGm-T1-D89">
+                        <barButtonItem key="rightBarButtonItem" id="hGm-T1-D89">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="VBA-PV-QhS">
                                 <rect key="frame" x="326" y="4.5" width="68" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

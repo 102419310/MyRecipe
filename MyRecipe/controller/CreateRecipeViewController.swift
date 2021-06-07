@@ -39,6 +39,7 @@ class CreateRecipeViewController: UIViewController, UITextFieldDelegate, UIImage
     //check the data and go back to home page
     //validation tut:https://www.youtube.com/watch?v=GczyH6sPBbI
     @IBAction func confirm(_ sender: Any) {
+        //planning to make these textfields into table view so users can select whether to add more columnss
         //character within 0~25
         guard let name = recipename.text, (recipename.text?.count) != 0, (recipename.text!.count) <= 25
         else {
@@ -65,9 +66,26 @@ class CreateRecipeViewController: UIViewController, UITextFieldDelegate, UIImage
         }
         let db = DBHelper()
         db.insert(name: name, cooktime: cookt, ingredients: ingred, steps: step, difficulty: Int(round(difficulty.value)))
+        
+        //insert a jpg file with name of the recipe to document directory
+        //https://stackoverflow.com/questions/32836862/how-to-use-writetofile-to-save-image-in-document-directory
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let imageName = "\(name).jpg"
+        let fileURL = documentsDirectory.appendingPathComponent(imageName)
+        let image = selectView.image
+        let imagedata = image!.jpegData(compressionQuality:  0.1)
+         if !FileManager.default.fileExists(atPath: fileURL.path) {
+               do {
+                try imagedata!.write(to: fileURL)
+                   print(fileURL)
+               } catch {
+                   print("File not saved")
+               }
+           }
+        //navigate to main screen
         _ = navigationController?.popViewController(animated: true)
     }
-    //planning to make these into table view so users can select whether to add more columns
+
     override func viewDidLoad() {
         super.viewDidLoad()
         steps.layer.borderWidth = 0.3
