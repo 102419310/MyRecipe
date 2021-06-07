@@ -90,10 +90,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let refreshAlert = UIAlertController(title: "Delete recipe", message: "This recipe will be permanently removed.", preferredStyle: UIAlertController.Style.alert)
 
             refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] (action: UIAlertAction!) in
+                deleteImage(name: list[indexPath.row].name)
                 db.delete(name: list[indexPath.row].name)
                 list.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                tableView.endUpdates()
+                table.deleteRows(at: [indexPath], with: .automatic)
+                table.endUpdates()
             }))
             refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
             }))
@@ -119,12 +120,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         let path = paths.first
         //image will have the name of the recipe
-        let imageURL = URL(fileURLWithPath: path!).appendingPathComponent("\(list[indexPath.row].name).jpg")
+        let imagepath = URL(fileURLWithPath: path!).appendingPathComponent("\(list[indexPath.row].name).jpg")
         
         if searching{
-            cell.configure(title: filteredlist[indexPath.row].name, image: imageURL, time: filteredlist[indexPath.row].cooktime + " mins")
+            cell.configure(title: filteredlist[indexPath.row].name, image: imagepath, time: filteredlist[indexPath.row].cooktime + " mins")
         }else{
-            cell.configure(title: list[indexPath.row].name, image: imageURL, time:list[indexPath.row].cooktime + " mins")}
+            cell.configure(title: list[indexPath.row].name, image: imagepath, time:list[indexPath.row].cooktime + " mins")}
         return cell
     }
     
@@ -141,6 +142,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         {
         let viewController = segue.destination as! ViewRecipeViewController
             viewController.recipe = recipe
+        }
+    }
+    
+    //delete image when the item is deleted
+    func deleteImage(name: String){
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        let path = paths.first
+        let imagepath = URL(fileURLWithPath: path!).appendingPathComponent("\(name).jpg")
+        do {
+            try FileManager.default.removeItem(at: imagepath)
+        } catch let error as NSError {
+            print("Error: \(error.domain)")
         }
     }
 }

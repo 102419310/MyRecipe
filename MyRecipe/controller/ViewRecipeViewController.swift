@@ -100,8 +100,8 @@ class ViewRecipeViewController: UIViewController {
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         let path = paths.first
         //image will have the name of the recipe
-        let imageURL = URL(fileURLWithPath: path!).appendingPathComponent("\(recipeName.text!).jpg")
-        recipeImage.image = UIImage(contentsOfFile: imageURL.path)
+        let imagepath = URL(fileURLWithPath: path!).appendingPathComponent("\(recipeName.text!).jpg")
+        recipeImage.image = UIImage(contentsOfFile: imagepath.path)
 
         // Do any additional setup after loading the view.
     }
