@@ -73,7 +73,8 @@ class CreateRecipeViewController: UIViewController, UITextFieldDelegate, UIImage
         let imageName = "\(name).jpg"
         let fileURL = documentsDirectory.appendingPathComponent(imageName)
         let image = selectView.image
-        let imagedata = image!.jpegData(compressionQuality:  0.1)
+        //lowest image quality to ensure performance
+        let imagedata = image!.jpegData(compressionQuality: 0.0)
          if !FileManager.default.fileExists(atPath: fileURL.path) {
                do {
                 try imagedata!.write(to: fileURL)
@@ -91,6 +92,7 @@ class CreateRecipeViewController: UIViewController, UITextFieldDelegate, UIImage
         steps.layer.borderWidth = 0.3
         ingredients.layer.borderWidth = 0.3
         warning.text = ""
+        selectView.image = UIImage(named: "dish")
     }
     
 //remove the keyboard when other place is touched

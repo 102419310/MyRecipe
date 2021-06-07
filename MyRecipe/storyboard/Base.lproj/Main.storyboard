@@ -270,7 +270,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dish" translatesAutoresizingMaskIntoConstraints="NO" id="ZJF-wS-scP">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZJF-wS-scP">
                                 <rect key="frame" x="0.0" y="88" width="414" height="170"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="170" id="lRb-dE-Rxc"/>
@@ -508,7 +508,7 @@
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.25" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dish" translatesAutoresizingMaskIntoConstraints="NO" id="TkE-iU-uNS">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.25" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TkE-iU-uNS">
                                 <rect key="frame" x="0.0" y="489" width="414" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="y2q-C5-na7"/>
@@ -574,7 +574,6 @@
         <image name="archivebox" catalog="system" width="128" height="106"/>
         <image name="blackbox" width="178" height="104"/>
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
-        <image name="dish" width="1546" height="908"/>
         <image name="flame" catalog="system" width="108" height="128"/>
         <image name="list.bullet.rectangle" catalog="system" width="128" height="93"/>
         <image name="plus.rectangle.on.rectangle.fill" catalog="system" width="128" height="96"/>
