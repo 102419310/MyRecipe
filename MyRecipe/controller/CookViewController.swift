@@ -4,10 +4,10 @@
 //
 //  Created by Tim Sun on 6/6/21.
 //
-
 import UIKit
 
 class CookViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
+
     //total seconds is for the display conversion
     var totalseconds = 0
     var seconds = 0
@@ -111,6 +111,7 @@ class CookViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         timeSelecter.delegate = self
         //hide the stop button at the begining
         stopButton.isEnabled = false
+        setupMenu()
     }
     
     func displayNotification(){
@@ -140,5 +141,18 @@ class CookViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
                   // Handle any errors.
                }
         }
+    }
+    //demonstration of UI Menu usage
+    func setupMenu(){
+        let menu = UIMenu(title: "", children: [
+                            UIAction(title: "Change theme to light",image:UIImage(systemName: "sun.min"), handler: {(_) in
+                                self.overrideUserInterfaceStyle = .light
+                            }),
+                            UIAction(title: "Change theme to dark", image:UIImage(systemName: "sun.max.fill"),handler: {(_) in
+                                self.overrideUserInterfaceStyle = .dark
+                            })])
+        //programmingly generate the buttons to avoid long hold
+        let menuButton = UIBarButtonItem(image:UIImage(systemName: "light.max"),menu: menu)
+        navigationItem.leftBarButtonItem = menuButton
     }
 }
